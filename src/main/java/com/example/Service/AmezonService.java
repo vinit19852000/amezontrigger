@@ -149,6 +149,7 @@ public class AmezonService {
 	     
 		}catch(Exception e) {
 			
+			System.out.print("exception e:"+e.toString());
 		}
 		
           return result;
