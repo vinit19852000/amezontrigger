@@ -21,6 +21,9 @@ public class AmezonService {
 	@Autowired
 	ProductRepo productRepo;
 	
+	
+	@Autowired
+    private WebDriver webDriver;
 	  @Autowired
 	    private JavaMailSender mailSender;
 
@@ -43,26 +46,13 @@ public class AmezonService {
 			
 			
 			try {
-				ChromeOptions options=new ChromeOptions();
 
-		        options.addArguments("--headless=old"); // Enable headless=old mode
-			      options.addArguments("--disable-gpu"); // Disable GPU to speed up in headless=old
-			        options.addArguments("--window-size=1920,1080"); // Set window size for better page rendering
-			        options.addArguments("--no-sandbox"); // Required for some environments
-			        options.addArguments("--disable-dev-shm-usage"); // For better memory handling
-
-			        
-			        // Print out the options to verify that headless=old mode is enabled
-			        System.out.println("ChromeOptions: " + options.toString());
-			        
-				WebDriver ch=new ChromeDriver(options);
 				
 				
 				
 				
-				
-				ch.get(url);
-				  String pageSource = ch.getPageSource();
+				webDriver.get(url);
+				  String pageSource = webDriver.getPageSource();
 				
 				Document json=Jsoup.parse(pageSource);
 				
@@ -81,7 +71,7 @@ public class AmezonService {
 		             System.out.println("Price not found.");
 		         }
 
-		          ch.quit();
+		         webDriver.quit();
 		     
 			}catch(Exception e) {
 				
@@ -103,26 +93,14 @@ public class AmezonService {
 		boolean result=false;
 		
 		try {
-			ChromeOptions options=new ChromeOptions();
 
-	        options.addArguments("--headless=old"); // Enable headless=old mode
-		      options.addArguments("--disable-gpu"); // Disable GPU to speed up in headless=old
-		        options.addArguments("--window-size=1920,1080"); // Set window size for better page rendering
-		        options.addArguments("--no-sandbox"); // Required for some environments
-		        options.addArguments("--disable-dev-shm-usage"); // For better memory handling
-
-		        
-		        // Print out the options to verify that headless=old mode is enabled
-		        System.out.println("ChromeOptions: " + options.toString());
-		        
-			ChromeDriver ch=new ChromeDriver(options);
 			
 			
 			
 			
 			
-			  ch.get(url);
-			  String pageSource = ch.getPageSource();
+			webDriver.get(url);
+			  String pageSource = webDriver.getPageSource();
 			
 			Document json=Jsoup.parse(pageSource);
 			
@@ -145,7 +123,7 @@ public class AmezonService {
 	             System.out.println("Price not found.");
 	         }
 
-	          ch.quit();
+	         webDriver.quit();
 	     
 		}catch(Exception e) {
 			

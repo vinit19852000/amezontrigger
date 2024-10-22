@@ -51,6 +51,22 @@
 	<groupId>org.seleniumhq.selenium</groupId>
 	<artifactId>selenium-chrome-driver</artifactId>
 	</dependency>
+	
+	
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <!-- Use the latest version -->
+</dependency>
+
+
+<dependency>
+    <groupId>io.github.bonigarcia</groupId>
+    <artifactId>webdrivermanager</artifactId>
+    <version>5.7.0</version> <!-- Use the latest version -->
+</dependency>
+
+
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-mail</artifactId>

@@ -10,9 +10,14 @@ COPY pom.xml .
 COPY src ./src
 
 # Run Maven to build the application
-RUN mvn clean package 
+RUN mvn clean package
 
-# ... (rest of your Dockerfile)
+# Copy WebDriverManager dependency (adjust version as needed)
+COPY --from=builder target/lib/WebDriverManager-5.4.1.jar app/lib/WebDriverManager.jar
+
+# Set the classpath to include WebDriverManager
+ENV CLASSPATH app/lib/WebDriverManager.jar:$CLASSPATH
+
 # Create a slimmer image for runtime
 FROM openjdk:17-slim
 
