@@ -10,11 +10,12 @@ public class WebConfig implements WebMvcConfigurer {
 
 	
 	String local="http://localhost:8081";
+	String local2="http://localhost:3000";
 	String production="https://amezontrigger.onrender.com";
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-        .allowedOrigins(production) // Explicit origins
+        .allowedOrigins(production,local,local2) // Explicit origins
         
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
