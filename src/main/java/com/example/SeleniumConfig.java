@@ -16,7 +16,9 @@ public class SeleniumConfig {
 
         // Set Chrome options for headless mode
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=old");
+        options.addArguments("--headless"); // Use headless mode
+        options.addArguments("--no-sandbox"); // Bypass OS security model
+        options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
         options.addArguments("--disable-gpu"); // Disable GPU hardware acceleration
         options.addArguments("--window-size=1920,1080"); // Set window size for consistent rendering
 
