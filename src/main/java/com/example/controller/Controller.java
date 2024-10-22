@@ -41,6 +41,12 @@ public class Controller {
 	}
 	
 	
+	@GetMapping("/deleteall")
+	public String delete() {
+		
+		productRepo.deleteAll();
+		return "deleted";
+	}	
 	@GetMapping("/droptable")
 	public String drop() {
 		
