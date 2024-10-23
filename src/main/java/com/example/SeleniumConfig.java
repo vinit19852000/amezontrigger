@@ -21,7 +21,6 @@ public class SeleniumConfig {
         options.addArguments("--disable-dev-shm-usage"); // Overcome limited resource problems
         options.addArguments("--disable-gpu"); // Disable GPU hardware acceleration
         options.addArguments("--window-size=1920,1080"); // Set window size for consistent rendering
-        options.addArguments("--proxy-server=socks5://127.0.0.1:9150");
 
         return new ChromeDriver(options);
     }
