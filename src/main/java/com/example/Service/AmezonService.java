@@ -11,6 +11,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.example.SeleniumConfig;
 import com.example.Entity.Product;
 import com.example.Repo.ProductRepo;
 
@@ -22,8 +23,8 @@ public class AmezonService {
 	ProductRepo productRepo;
 	
 	
-	@Autowired
-    private WebDriver webDriver;
+
+   
 	  @Autowired
 	    private JavaMailSender mailSender;
 
@@ -47,10 +48,9 @@ public class AmezonService {
 			
 			try {
 
-				
-				
-				
-				
+			      SeleniumConfig seleniumConfig = new SeleniumConfig();
+			      WebDriver webDriver = seleniumConfig.webDriver(); // Creating WebDriver without @Autowired
+
 				webDriver.get(url);
 				  String pageSource = webDriver.getPageSource();
 				
@@ -96,7 +96,9 @@ public class AmezonService {
 
 			
 			
-			
+		      SeleniumConfig seleniumConfig = new SeleniumConfig();
+		      WebDriver webDriver = seleniumConfig.webDriver(); // Creating WebDriver without @Autowired
+
 			
 			
 			webDriver.get(url);
