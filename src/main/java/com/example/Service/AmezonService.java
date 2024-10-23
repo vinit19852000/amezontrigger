@@ -1,6 +1,8 @@
 package com.example.Service;
 
 
+import java.time.Duration;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.openqa.selenium.WebDriver;
@@ -56,6 +58,8 @@ public class AmezonService {
 				
 				Document json=Jsoup.parse(pageSource);
 				
+				System.out.println("json:"+json);
+				
 			     org.jsoup.nodes.Element priceElement = json.selectFirst("span.a-price-whole");
 
 		         if (priceElement != null) {
@@ -101,11 +105,14 @@ public class AmezonService {
 			
 		 
 			
-			webDriver.get(url);
+			  webDriver.get(url);
+			  webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+
 			  String pageSource = webDriver.getPageSource();
 			
 			Document json=Jsoup.parse(pageSource);
 			
+			 System.out.println("json"+json.toString());
 		     org.jsoup.nodes.Element priceElement = json.selectFirst("span.a-price-whole");
 
 	         if (priceElement != null) {
@@ -129,9 +136,12 @@ public class AmezonService {
 	     
 		}catch(Exception e) {
 			
-			System.out.print("THIS IS ERROR OUT BECAUSE:"+e.toString());
+			System.out.println("THIS IS ERROR OUT BECAUSE:"+e.toString());
 		}finally {
+			
+			 System.out.println("Trying to close webdriver");
 	         webDriver.quit();
+			 System.out.println("webdriver closed  sucessfully........");
 		}
 		
           return result;
