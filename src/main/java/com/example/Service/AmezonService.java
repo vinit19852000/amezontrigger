@@ -129,17 +129,17 @@ public class AmezonService {
 
 	                // Attempt to find and click "Try different image" link if price is not found
 	                try {
-	                	Thread.sleep(new Random().nextInt(2000, 5000));
+	                	Thread.sleep(new Random().nextInt(2000, 4000));
 	                    WebElement tryDifferentImageLink = webDriver.findElement(By.xpath("//a[contains(@onclick, 'window.location.reload')]"));
 	                    if (tryDifferentImageLink != null) {
 	                        System.out.println("Clicking 'Try different image' link.");
 	                        tryDifferentImageLink.click();
 
 	                        // Wait for the page to reload and check the price again
-	                        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+	                        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
 	                        pageSource = webDriver.getPageSource();
 	                        json = Jsoup.parse(pageSource);
-
+	        	            System.out.println("2ndjson: " + json.toString());
 	                        priceElement = json.selectFirst("span.a-price-whole");
 	                        if (priceElement != null) {
 	                            String priceWhole = priceElement.text();
@@ -156,7 +156,7 @@ public class AmezonService {
 	                        }
 	                    }
 	                } catch (Exception e) {
-	                    System.out.println("Error while trying to click 'Try different image': " + e.toString());
+	                    System.out.println("your error: " + e.toString());
 	                }
 	            }
 
@@ -164,7 +164,7 @@ public class AmezonService {
 	            System.out.println("THIS IS ERROR OUT BECAUSE: " + e.toString());
 	        } finally {
 	            System.out.println("Trying to quit");
-	            webDriver.quit();
+	            webDriver.quit();			
 	            System.out.println("Quited");
 	        }
 
