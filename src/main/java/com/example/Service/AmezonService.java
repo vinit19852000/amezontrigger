@@ -87,19 +87,19 @@ public class AmezonService {
 
 		 System.out.println("desiredate:"+product.getDesireDate());
 		 System.out.println("desirepirce:"+product.getDesirePrice());
-		 
+		 System.out.println("URL:"+product.getUrl());
 		String url=product.getUrl();
 		
 		boolean result=false;
+	     SeleniumConfig seleniumConfig = new SeleniumConfig();
+	      WebDriver webDriver = seleniumConfig.webDriver(); // Creating WebDriver without @Autowired
+    
 		
 		try {
 
 			
 			
-		      SeleniumConfig seleniumConfig = new SeleniumConfig();
-		      WebDriver webDriver = seleniumConfig.webDriver(); // Creating WebDriver without @Autowired
-
-			
+		 
 			
 			webDriver.get(url);
 			  String pageSource = webDriver.getPageSource();
@@ -125,11 +125,13 @@ public class AmezonService {
 	             System.out.println("Price not found.");
 	         }
 
-	         webDriver.quit();
+
 	     
 		}catch(Exception e) {
 			
-			System.out.print("exception e:"+e.toString());
+			System.out.print("THIS IS ERROR OUT BECAUSE:"+e.toString());
+		}finally {
+	         webDriver.quit();
 		}
 		
           return result;
